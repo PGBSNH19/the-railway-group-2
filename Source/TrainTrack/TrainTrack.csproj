@@ -8,4 +8,7 @@
   <ItemGroup>
     <Folder Include="Classes\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Classes\IReader.cs" />
+  </ItemGroup>
 </Project>

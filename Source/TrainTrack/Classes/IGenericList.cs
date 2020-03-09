@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace TrainTrack.Classes
 {
-    public class GenericList
+    public interface IGenericList<T> 
     {
-        public GenericList()
-        {
-        }
+        List<T> ReadFile(string path);
+
     }
 }
