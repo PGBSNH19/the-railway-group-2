@@ -5,17 +5,17 @@ namespace TrainTrack.Classes
     {
         public int ID { get; set; }
         public int StationPlacement { get; set; }
-        public Enum SwitchPlacement { get; set; }
-        public Enum Crossing { get; set; }
+        public int SwitchID { get; set; }
+        public int CrossingID { get; set; }
         public int Distance { get; set; }
-        public Station StationID { get; set; }
+        public int StationID { get; set; }
 
-        public TrainTrack(int ID,int StationPlacement,Enum SwitchPlacement,Enum Crossing,int Distance, Station StationID)
+        public TrainTrack(int ID,int StationPlacement,int SwitchID,int CrossingID,int Distance, int StationID)
         {
             this.ID = ID;
             this.StationPlacement = StationPlacement;
-            this.SwitchPlacement = SwitchPlacement;
-            this.Crossing = Crossing;
+            this.SwitchID = SwitchID;
+            this.CrossingID = CrossingID;
             this.Distance = Distance;
             this.StationID = StationID;
         }
