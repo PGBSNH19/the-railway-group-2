@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace TrainTrack.Classes
 {
-    public class TrainTrack
+    public class TrainTrack_
     {
         public int ID { get; set; }
         public int StationPlacement { get; set; }
@@ -10,7 +12,7 @@ namespace TrainTrack.Classes
         public int Distance { get; set; }
         public int StationID { get; set; }
 
-        public TrainTrack(int ID,int StationPlacement,int SwitchID,int CrossingID,int Distance, int StationID)
+        public TrainTrack_(int ID,int StationPlacement,int SwitchID,int CrossingID,int Distance, int StationID)
         {
             this.ID = ID;
             this.StationPlacement = StationPlacement;
@@ -19,5 +21,6 @@ namespace TrainTrack.Classes
             this.Distance = Distance;
             this.StationID = StationID;
         }
+
     }
 }

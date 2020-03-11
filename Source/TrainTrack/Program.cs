@@ -36,6 +36,18 @@ namespace TrainTrack
                 Console.WriteLine(station.ID + ", " + station.EndStation);
             }
 
+
+
+
+
+
+            var t1 = new TrainTrack_(1, 5, 1, 1, 5, 2);
+            Console.WriteLine(t1.Distance);
+
+            var t2 = new TrainTrack_(2, 15, 2, 2, 15, 2);
+            Console.WriteLine(t2.Distance);
+
+
         }
     }
 }
