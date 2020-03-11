@@ -16,7 +16,20 @@ namespace TrainTrack
 
             var flyingScottsMan = train.Trains[0];
 
-            Console.WriteLine(flyingScottsMan.Name);
+
+            var pathTime = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/timetable.txt";
+            TimeTable times = new TimeTable();
+            foreach (var _time in times.ReadFile(pathTime))
+            {
+
+            }
+
+            TimeTable time = times.TimeTables[1];
+
+
+            Console.WriteLine(time.DepartureTime);
+
+            _ = new Controller().StartTrain(time, flyingScottsMan);
             
 
         }

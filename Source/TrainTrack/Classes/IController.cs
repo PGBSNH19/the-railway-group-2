@@ -3,7 +3,9 @@ namespace TrainTrack.Classes
 {
     public interface IController
     {
-        IController StartTrain(Train train);
+        IController StartTrain(TimeTable time, Train train);
         IController StopTrain(Train train);
+
+        
     }
 }

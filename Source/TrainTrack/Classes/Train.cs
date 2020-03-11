@@ -4,6 +4,8 @@ using System.IO;
 
 namespace TrainTrack.Classes
 {
+
+
     public class Train : IGenericList<Train>
     {
         
@@ -14,6 +16,9 @@ namespace TrainTrack.Classes
         public bool Operated { get; set; }
 
         public List<Train> Trains { get; set; } = new List<Train>();
+
+        
+        
 
         public static Train CreateFromLine(string line)
         {
