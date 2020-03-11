@@ -14,12 +14,21 @@ namespace TrainTrack
             //    Console.WriteLine(t.ID + " " + t.Name + " " + t.MaxSpeed + " " + t.Operated);
             //}
 
-            var pathPassangers = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/passengers.txt";
-            var passengers = new Passenger();
-            foreach (var passenger in passengers.ReadFile(pathPassangers))
+            //var pathPassangers = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/passengers.txt";
+            //var passengers = new Passenger();
+            //foreach (var passenger in passengers.ReadFile(pathPassangers))
+            //{
+            //    Console.WriteLine(passenger.Name);
+            //}
+
+
+            var pathTimeTables = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/timetable.txt";
+            var timeTables = new TimeTable();
+            foreach (var timeTable in timeTables.ReadFile(pathTimeTables))
             {
-                Console.WriteLine(passenger.Name);
+                Console.WriteLine(timeTable.DepartureTime + ", " + timeTable.ArrivalTime);
             }
+
         }
     }
 }
