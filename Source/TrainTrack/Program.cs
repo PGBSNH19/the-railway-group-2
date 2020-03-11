@@ -22,11 +22,18 @@ namespace TrainTrack
             //}
 
 
-            var pathTimeTables = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/timetable.txt";
-            var timeTables = new TimeTable();
-            foreach (var timeTable in timeTables.ReadFile(pathTimeTables))
+            //var pathTimeTables = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/timetable.txt";
+            //var timeTables = new TimeTable();
+            //foreach (var timeTable in timeTables.ReadFile(pathTimeTables))
+            //{
+            //    Console.WriteLine(timeTable.DepartureTime + ", " + timeTable.ArrivalTime);
+            //}
+
+            var pathStations = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/stations.txt";
+            var stations = new Station();
+            foreach (var station in stations.ReadFile(pathStations))
             {
-                Console.WriteLine(timeTable.DepartureTime + ", " + timeTable.ArrivalTime);
+                Console.WriteLine(station.ID + ", " + station.EndStation);
             }
 
         }
