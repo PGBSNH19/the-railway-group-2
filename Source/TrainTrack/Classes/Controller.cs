@@ -23,14 +23,14 @@ namespace TrainTrack.Classes
             for(int i = 0; i < Departure.Minutes; i++)
             {
 
-                if ( avTime >= dpTime)
+                if ( avTime <= dpTime)
                 {
 
-                    Console.WriteLine("choo choo");
+                    Console.WriteLine($"chuu choo");
                 }
                 else
                 {
-                    Console.WriteLine($"Train stopped at {avTime} o clock");
+                    Console.WriteLine($"Train stopped at Saturday {avTime} o´clock and Departed at Friday {dpTime}!");
                     break;
 
                 }
