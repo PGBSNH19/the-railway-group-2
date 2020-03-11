@@ -30,7 +30,7 @@ namespace TrainTrack.Classes
                 }
                 else
                 {
-                    Console.WriteLine($"Train stopped at {avTime} oclock");
+                    Console.WriteLine($"Train stopped at {avTime} o clock");
                     break;
 
                 }
