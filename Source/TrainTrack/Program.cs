@@ -7,46 +7,17 @@ namespace TrainTrack
     {
         static void Main(string[] args)
         {
-            //var path = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/trains.txt";
-            //var trainList = new Train();
-            //foreach (var t in trainList.ReadFile(path))
-            //{
-            //    Console.WriteLine(t.ID + " " + t.Name + " " + t.MaxSpeed + " " + t.Operated);
-            //}
-
-            //var pathPassangers = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/passengers.txt";
-            //var passengers = new Passenger();
-            //foreach (var passenger in passengers.ReadFile(pathPassangers))
-            //{
-            //    Console.WriteLine(passenger.Name);
-            //}
-
-
-            //var pathTimeTables = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/timetable.txt";
-            //var timeTables = new TimeTable();
-            //foreach (var timeTable in timeTables.ReadFile(pathTimeTables))
-            //{
-            //    Console.WriteLine(timeTable.DepartureTime + ", " + timeTable.ArrivalTime);
-            //}
-
-            var pathStations = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/stations.txt";
-            var stations = new Station();
-            foreach (var station in stations.ReadFile(pathStations))
+            var pathTrain = @"/Users/william/OneDrive/Documents/GIT_local/the-railway-group-2/Data/trains.txt";
+            Train train = new Train();
+            foreach (var _train in train.ReadFile(pathTrain))
             {
-                Console.WriteLine(station.ID + ", " + station.EndStation);
+
             }
 
+            var flyingScottsMan = train.Trains[0];
 
-
-
-
-
-            var t1 = new TrainTrack_(1, 5, 1, 1, 5, 2);
-            Console.WriteLine(t1.Distance);
-
-            var t2 = new TrainTrack_(2, 15, 2, 2, 15, 2);
-            Console.WriteLine(t2.Distance);
-
+            Console.WriteLine(flyingScottsMan.Name);
+            
 
         }
     }
