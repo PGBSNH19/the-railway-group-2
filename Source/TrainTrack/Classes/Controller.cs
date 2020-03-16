@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 namespace TrainTrack.Classes
 {
-    public class Controller //: IController
+    public class Controller : IController
     {
         public int TrainID { get; set; }
         public int StationID { get; set; }
@@ -13,16 +13,18 @@ namespace TrainTrack.Classes
         public TimeSpan Departure { get; set; }
         public TimeSpan Arrival { get; set; }
 
-        TimeSpan addMin = TimeSpan.FromMinutes(01);
         public TimeTable myTimeTable;
 
         
+        //TimeSpan addMin = TimeSpan.FromMinutes(01);
 
-        public void StartTrain(TimeTable time, Train train)
+        public IController StartTrain(List<TimeTable> times, Train train)
         {
-            var train2TT = myTimeTable.TimeTables;
-            
-                for (int i = 0; i < train2TT.Count - 1; i++)
+            var train2TT = times;
+
+
+
+            for (int i = 0; i < train2TT.Count - 1; i++)
                 {
                     TimeSpan addOneMinute = TimeSpan.FromMinutes(1);
                     DateTime departureTime = DateTime.Parse(train2TT[i].DepartureTime);
@@ -50,6 +52,8 @@ namespace TrainTrack.Classes
                     Console.WriteLine($"Arrival Time: { arrivalTime.ToString("HH:mm") }");
                     Console.WriteLine();
                 }
+
+            return this;
             
 
             //Departure = TimeSpan.Parse(time.DepartureTime);
@@ -80,22 +84,18 @@ namespace TrainTrack.Classes
         }
 
 
-        private static Train CheckForTrain(List<Train> trains, int check)
+        public IController CheckForTrain(List<Train> trains, int check)
         {
             var train = trains.Where(t => t.ID == check).ToList().First();
-            return train;
+            return this;
         }
 
-        private static List<TimeTable> FollowTimeTable(List<TimeTable> times, Train train)
+        public IController FollowTimeTable(List<TimeTable> times, Train train)
         {
             var timeTable = times.Where(t => t.TrainID == train.ID).ToList();
-            return timeTable;
+            return this;
         }
 
 
-        public IController StopTrain(Train train)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

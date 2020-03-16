@@ -34,10 +34,13 @@ namespace TrainTrack
             //Console.WriteLine(time.DepartureTime);
 
             var trains = new Train().ReadFile();
+            var times = new TimeTable().ReadFile();
 
-            var goldenArrow = trains[0];
+            var goldenArrow = trains[1];
 
-            Console.WriteLine(goldenArrow.Name);
+            var controller = new Controller().FollowTimeTable(times, goldenArrow).CheckForTrain(trains, goldenArrow.ID).StartTrain(times, goldenArrow);
+
+
 
         }
     }
