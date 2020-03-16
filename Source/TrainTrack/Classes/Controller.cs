@@ -15,8 +15,8 @@ namespace TrainTrack.Classes
 
         public List<TimeTable> myTimeTable;
         public Thread _thread1;
+        public Thread _thread2;
 
-        
         List<TimeTable> times = new TimeTable().ReadFile();
 
         public IController StartTrain(Train train)
@@ -61,6 +61,14 @@ namespace TrainTrack.Classes
         {
             _thread1 = new Thread(() => StartTrain(train));
             _thread1.Start();
+
+            return this;
+        }
+
+        public IController Start2(Train train)
+        {
+            _thread2 = new Thread(() => StartTrain(train));
+            _thread2.Start();
 
             return this;
         }
