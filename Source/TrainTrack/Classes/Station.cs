@@ -9,7 +9,7 @@ namespace TrainTrack.Classes
         public int ID { get; set; }
         public string Name { get; set; }
         public bool EndStation { get; set; }
-
+        public string FilePath { get; set; } = @"data/stations.txt";
         public List<Station> Stations { get; set; } = new List<Station>();
 
         public static Station CreateFromLine(string line)
@@ -26,9 +26,9 @@ namespace TrainTrack.Classes
             return station;
         }
 
-        public List<Station> ReadFile(string path)
+        public List<Station> ReadFile()
         {
-            var lines = File.ReadAllLines(path);
+            var lines = File.ReadAllLines(FilePath);
 
             for (int i = 1; i < lines.Length; i++)
             {

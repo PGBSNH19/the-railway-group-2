@@ -10,7 +10,7 @@ namespace TrainTrack.Classes
         public int StationID { get; set; }
         public string DepartureTime { get; set; }
         public string ArrivalTime { get; set; }
-        
+        public string FilePath { get; set; } = "@Data/timetable.txt";
 
         public List<TimeTable> TimeTables { get; set; } = new List<TimeTable>();
 
@@ -29,9 +29,9 @@ namespace TrainTrack.Classes
             return timeTable;
         }
 
-        public List<TimeTable> ReadFile(string path)
+        public List<TimeTable> ReadFile()
         {
-            var lines = File.ReadAllLines(path);
+            var lines = File.ReadAllLines(FilePath);
 
             for (int i = 1; i < lines.Length; i++)
             {

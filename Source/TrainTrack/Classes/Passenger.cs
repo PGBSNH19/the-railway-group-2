@@ -9,7 +9,7 @@ namespace TrainTrack.Classes
 
         public int ID { get; set; }
         public string Name { get; set; }
-
+        public string FilePath { get; set; } = "@data/passengers.txt";
         public List<Passenger> Passengers { get; set; } = new List<Passenger>();
 
         public static Passenger CreateFromLine(string line)
@@ -23,9 +23,9 @@ namespace TrainTrack.Classes
             return passenger;
         }
 
-        public List<Passenger> ReadFile(string path)
+        public List<Passenger> ReadFile()
         {
-            var lines = File.ReadAllLines(path);
+            var lines = File.ReadAllLines(FilePath);
 
             for (int i = 0; i < lines.Length; i++)
             {

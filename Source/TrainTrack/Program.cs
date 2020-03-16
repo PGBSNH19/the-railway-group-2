@@ -33,8 +33,11 @@ namespace TrainTrack
 
             //Console.WriteLine(time.DepartureTime);
 
-          
-            
+            var trains = new Train().ReadFile();
+
+            var goldenArrow = trains[0];
+
+            Console.WriteLine(goldenArrow.Name);
 
         }
     }

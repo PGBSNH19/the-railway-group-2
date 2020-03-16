@@ -5,7 +5,8 @@ namespace TrainTrack.Classes
 {
     public interface IGenericList<T> 
     {
-        List<T> ReadFile(string path);
+        public string FilePath { get; set; }
+        List<T> ReadFile();
 
     }
 }

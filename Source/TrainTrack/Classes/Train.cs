@@ -15,7 +15,9 @@ namespace TrainTrack.Classes
         public int MaxSpeed { get; set; }
         public bool Operated { get; set; }
 
+        public string FilePath { get; set; } = @"data/trains.txt";
         public List<Train> Trains { get; set; } = new List<Train>();
+
 
         
         
@@ -33,9 +35,9 @@ namespace TrainTrack.Classes
             return t;
         }
 
-        public List<Train> ReadFile(string path)
+        public List<Train> ReadFile()
         {
-            var lines = File.ReadAllLines(path);
+            var lines = File.ReadAllLines(FilePath);
 
             for (int i = 1; i < lines.Length; i++)
             {
