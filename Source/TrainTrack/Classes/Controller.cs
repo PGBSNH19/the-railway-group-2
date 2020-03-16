@@ -15,10 +15,11 @@ namespace TrainTrack.Classes
 
         public TimeTable myTimeTable;
 
-        
-        //TimeSpan addMin = TimeSpan.FromMinutes(01);
 
-        public IController StartTrain(List<TimeTable> times, Train train)
+        //List<Train> trains = new Train().ReadFile();
+        List<TimeTable> times = new TimeTable().ReadFile();
+
+        public IController StartTrain(Train train)
         {
             var train2TT = times;
 
@@ -54,47 +55,21 @@ namespace TrainTrack.Classes
                 }
 
             return this;
-            
-
-            //Departure = TimeSpan.Parse(time.DepartureTime);
-
-            //var dpTime = TimeSpan.Parse(time.DepartureTime);
-            //var avTime = TimeSpan.Parse(time.ArrivalTime);
-            //for(int i = 0; i < Departure.Minutes; i++)
-            //{
-
-            //    if ( avTime <= dpTime)
-            //    {
-
-            //        Console.WriteLine($"chuu choo");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine($"Train stopped at Saturday {avTime} o´clock and Departed at Friday {dpTime}!");
-            //        break;
-
-            //    }
-
-            //    dpTime -= addMin;
-            //    Thread.Sleep(1000);
-            //}
-
-
            
         }
 
         
-        public Train CheckForTrain(List<Train> trains, int check)
+        public IController CheckForTrain(List<Train> trains, int check)
         {
             var train = trains.Where(t => t.ID == check).ToList().First();
-            return train;
+            return this;
         }
-        
 
-        public List<TimeTable> FollowTimeTable(List<TimeTable> times,Train train)
+
+        public IController FollowTimeTable(Train train)
         {
             var timeTable = times.Where(t => t.TrainID == train.ID).ToList();
-            return timeTable;
+            return this;
         }
 
 
