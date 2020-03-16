@@ -6,8 +6,11 @@ namespace TrainTrack.Classes
     public interface IController
     {
         IController StartTrain(List<TimeTable> times, Train train);
-        IController CheckForTrain(List<Train> trains, int check);
-        IController FollowTimeTable(List<TimeTable> times, Train train);
+
+        Train CheckForTrain(List<Train> trains, int check);
+
+
+        List<TimeTable> FollowTimeTable(List<TimeTable> times, Train train);
 
 
 

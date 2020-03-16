@@ -38,7 +38,8 @@ namespace TrainTrack
 
             var goldenArrow = trains[1];
 
-            var controller = new Controller().FollowTimeTable(times, goldenArrow).CheckForTrain(trains, goldenArrow.ID).StartTrain(times, goldenArrow);
+
+            var controller = new Controller().StartTrain(times, goldenArrow).CheckForTrain(trains, goldenArrow.ID).FollowTimeTable(times, goldenArrow);
 
 
 
