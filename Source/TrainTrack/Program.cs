@@ -36,7 +36,7 @@ namespace TrainTrack
             var trains = new Train().ReadFile();
             //var times = new TimeTable().ReadFile();
 
-            var goldenArrow = trains[2];
+            var goldenArrow = trains[1];
 
             var x = new Controller();
             //var timez = x.FollowTimeTable(times, goldenArrow);

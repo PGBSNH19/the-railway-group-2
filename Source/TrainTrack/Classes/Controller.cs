@@ -13,15 +13,15 @@ namespace TrainTrack.Classes
         public TimeSpan Departure { get; set; }
         public TimeSpan Arrival { get; set; }
 
-        public TimeTable myTimeTable;
+        public List<TimeTable> myTimeTable;
 
 
-        //List<Train> trains = new Train().ReadFile();
+        
         List<TimeTable> times = new TimeTable().ReadFile();
 
         public IController StartTrain(Train train)
         {
-            var train2TT = times;
+            var train2TT = myTimeTable;
 
 
 
@@ -68,7 +68,7 @@ namespace TrainTrack.Classes
 
         public IController FollowTimeTable(Train train)
         {
-            var timeTable = times.Where(t => t.TrainID == train.ID).ToList();
+            myTimeTable = times.Where(t => t.TrainID == train.ID).ToList();
             return this;
         }
 
