@@ -1,5 +1,6 @@
 ﻿using System;
 using TrainTrack.Classes;
+using System.Threading;
 
 namespace TrainTrack
 {
@@ -42,9 +43,10 @@ namespace TrainTrack
             //var timez = x.FollowTimeTable(times, goldenArrow);
 
 
-            var controller = new Controller().CheckForTrain(trains, goldenArrow.ID).FollowTimeTable(goldenArrow).StartTrain(goldenArrow);
 
+            var _ = new Controller().CheckForTrain(trains, goldenArrow.ID).FollowTimeTable(goldenArrow).Start1(goldenArrow);
 
+            
 
         }
     }
