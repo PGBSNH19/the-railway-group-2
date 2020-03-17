@@ -15,7 +15,7 @@ namespace TrainTrack.Classes
 
         public List<TimeTable> myTimeTable;
 
-        public List<Station> allStations;
+        public List<Station> stopStations;
 
         public Thread _thread1;
         public Thread _thread2;
@@ -26,7 +26,9 @@ namespace TrainTrack.Classes
         public IController StartTrain(Train train)
         {
             var train2TT = myTimeTable;
-            var stations = allStations;
+            var stations = stopStations;
+
+            
 
             for (int i = 0; i < train2TT.Count - 1; i++)
                 {
@@ -34,28 +36,67 @@ namespace TrainTrack.Classes
                     DateTime departureTime = DateTime.Parse(train2TT[i].DepartureTime);
                     DateTime arrivalTime = DateTime.Parse(train2TT[i + 1].ArrivalTime);
 
-                    Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
-                    Console.WriteLine($"Train: { train.Name }");
-                    Console.WriteLine();
+                    //Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
+                    //Console.WriteLine($"Train: { train.Name }");
+                    //Console.WriteLine();
 
-                    if (i == 1)
+
+
+                for (int j = 0; j < stations.Count; j++)
+                {
+                   
+                    if(stations[j].ID == train2TT[i].StationID)
                     {
-                        Console.WriteLine("Train is halting for 2 minutes...before continuing the journey!");
-                        Console.WriteLine();
-                        Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
-                        Thread.Sleep(1000);
+                       
+                        if(train2TT[i].ArrivalTime == "00:00")
+                        {
+                            Console.WriteLine("Train is leaving from " + stations[i].Name + " at " + train2TT[i].DepartureTime);
+                            Console.WriteLine();
+                        }
+
+                        else if (train2TT[i].ArrivalTime != "00:00")
+                        {
+                            Console.WriteLine("Arrived at " + stations[j].Name + "at " + train2TT[i].ArrivalTime);
+                            Console.WriteLine("Next departure: " + train2TT[i].DepartureTime);
+                            Console.WriteLine();
+                        }
+
+                        else if (stations[j].EndStation == true)
+                        {
+                            Console.WriteLine(stations[j].Name + " is the final destination for " + train.Name);
+                            Console.WriteLine("Arrived at " + train2TT[i].ArrivalTime);
+                            Console.WriteLine();
+                        }
+
+                        if (i == 1)
+                        {
+                            //Console.WriteLine("Train is halting for 2 minutes...before continuing the journey!");
+                            //Console.WriteLine();
+                            //Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
+                            Thread.Sleep(2000);
+                        }
+
+                        while (departureTime < arrivalTime)
+                        {
+                            Console.WriteLine($"choo choo { departureTime.ToString("HH:mm") }");
+                            departureTime += addOneMinute;
+                            arrivalTime.AddMinutes(addOneMinute.Minutes);
+                            Thread.Sleep(200);
+                        }
+
                     }
 
-                    while (departureTime < arrivalTime)
-                    {
-                        Console.WriteLine($"choo choo { departureTime.ToString("HH:mm") }");
-                        departureTime += addOneMinute;
-                        arrivalTime.AddMinutes(addOneMinute.Minutes);
-                        Thread.Sleep(200);
-                    }
-                    Console.WriteLine($"Arrival Time: { arrivalTime.ToString("HH:mm") }");
-                    Console.WriteLine();
+
+
+                    
+
                 }
+
+                
+
+                    //Console.WriteLine($"Arrival Time: { arrivalTime.ToString("HH:mm") }");
+                    Console.WriteLine();
+            }
 
             return this;
            
@@ -93,7 +134,7 @@ namespace TrainTrack.Classes
 
         public IController StopAtStations(List<Station> stations)
         {          
-                allStations = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).ToList();
+                stopStations = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).ToList();
                  
             return this;
         }
