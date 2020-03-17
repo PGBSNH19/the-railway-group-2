@@ -9,8 +9,8 @@ namespace TrainTrack.Classes
         public int TrainID { get; set; }
         public int StationID { get; set; }
         public int TrainPosition { get; set; } //Crossing ; Open or close?
-        public TimeSpan Departure { get; set; }
-        public TimeSpan Arrival { get; set; }
+        public DateTime Departure { get; set; }
+        public DateTime Arrival { get; set; }
 
         public List<TimeTable> myTimeTable;
         public Thread _thread1;
@@ -192,6 +192,5 @@ namespace TrainTrack.Classes
             Console.WriteLine($"\nCrossing: {crossing.ID} is now set to {crossing.Status} and it lies {crossing.Placement}km ahead \n");
             return this;
         }
-
     }
 }
