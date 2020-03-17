@@ -20,13 +20,21 @@ namespace TrainTrack
             var stations = new Station().ReadFile();
 
 
-            var controller = new Controller()
-                .CheckForTrain(trains, goldenArrow.ID)
-                .FollowTimeTable(goldenArrow)
-                .StopAtStations(stations, goldenArrow)
+            //var trainRoute1 = new Controller()
+            //    .CheckForTrain(trains, goldenArrow.ID)
+            //    .FollowTimeTable(goldenArrow)
+            //    .StopAtStations(stations, goldenArrow)
+            //    .LoadTrainWithPassengers(passengers)
+            //    .SetCrossing(Status.Open)
+            //    .StartThread1(goldenArrow);
+
+            var trainRoute2 = new Controller()
+                .CheckForTrain(trains, lapplandståget.ID)
+                .FollowTimeTable(lapplandståget)
+                .StopAtStations(stations, lapplandståget)
                 .LoadTrainWithPassengers(passengers)
                 .SetCrossing(Status.Open)
-                .StartThread(goldenArrow);
+                .StartThread2(lapplandståget);
         }
     }
 }

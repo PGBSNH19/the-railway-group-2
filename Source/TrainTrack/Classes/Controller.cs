@@ -32,21 +32,13 @@ namespace TrainTrack.Classes
                 stations = stopStationsT2;
             }
 
-
-
-
-
-
-
-
-
             for (int i = 0; i < train2TT.Count - 1; i++)
             {
                 TimeSpan addOneMinute = TimeSpan.FromMinutes(1);
-                DateTime departureTime = DateTime.Parse(train2TT[i].DepartureTime);
-                DateTime arrivalTime = DateTime.Parse(train2TT[i + 1].ArrivalTime);
+                Departure = DateTime.Parse(train2TT[i].DepartureTime);
+                Arrival = DateTime.Parse(train2TT[i + 1].ArrivalTime);
 
-                //Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
+                //Console.WriteLine($"Departure Time: { Departure.ToString("HH:mm") }");
                 //Console.WriteLine($"Train: { train.Name }");
                 //Console.WriteLine();
 
@@ -84,29 +76,23 @@ namespace TrainTrack.Classes
                         {
                             //Console.WriteLine("Train is halting for 2 minutes...before continuing the journey!");
                             //Console.WriteLine();
-                            //Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
+                            //Console.WriteLine($"Departure Time: { Departure.ToString("HH:mm") }");
                             Thread.Sleep(2000);
                         }
 
-                        while (departureTime < arrivalTime)
+                        while (Departure < Arrival)
                         {
-                            Console.WriteLine($"choo choo { departureTime.ToString("HH:mm") }");
-                            departureTime += addOneMinute;
-                            arrivalTime.AddMinutes(addOneMinute.Minutes);
+                            Console.WriteLine($"{train.Name} says: Choo choo { Departure.ToString("HH:mm") }");
+                            Departure += addOneMinute;
+                            Arrival.AddMinutes(addOneMinute.Minutes);
                             Thread.Sleep(200);
                         }
 
                     }
 
-
-
-
-
                 }
 
-
-
-                Console.WriteLine($"Arrival Time: { arrivalTime.ToString("HH:mm") }");
+                Console.WriteLine($"{train.Name} Arrival Time: { Arrival.ToString("HH:mm") }");
                 Console.WriteLine();
             }
 
@@ -114,7 +100,7 @@ namespace TrainTrack.Classes
 
         }
 
-        public IController StartThread(Train train)
+        public IController StartThread1(Train train)
         {
             _thread1 = new Thread(() => StartTrain(train));
             _thread1.Start();
@@ -122,7 +108,7 @@ namespace TrainTrack.Classes
             return this;
         }
 
-        public IController Start2(Train train)
+        public IController StartThread2(Train train)
         {
             _thread2 = new Thread(() => StartTrain(train));
             _thread2.Start();
@@ -143,6 +129,7 @@ namespace TrainTrack.Classes
 
             return this;
         }
+
         public IController StopAtStations(List<Station> stations, Train train)
         {
 
@@ -156,12 +143,6 @@ namespace TrainTrack.Classes
                 stopStationsT2 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).ToList();
 
             }
-
-
-
-
-
-
             return this;
         }
 
