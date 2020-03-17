@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TrainTrack.Classes
+﻿namespace TrainTrack.Classes
 {
     public class TrainTrack_
     {
@@ -21,6 +18,5 @@ namespace TrainTrack.Classes
             this.Distance = Distance;
             this.StationID = StationID;
         }
-
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace TrainTrack.Classes
@@ -20,7 +19,6 @@ namespace TrainTrack.Classes
                 ID = int.Parse(split[0]),
                 Name = split[1],
                 EndStation = bool.Parse(split[2])
-
             };
 
             return station;

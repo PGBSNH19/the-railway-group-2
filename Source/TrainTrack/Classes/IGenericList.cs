@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace TrainTrack.Classes
 {
@@ -7,6 +6,5 @@ namespace TrainTrack.Classes
     {
         public string FilePath { get; set; }
         List<T> ReadFile();
-
     }
 }
