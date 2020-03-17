@@ -17,12 +17,13 @@ namespace TrainTrack
 
 
             List<Passenger> passengers = new Passenger().ReadFile();
-
+            var stations = new Station().ReadFile();
 
 
             var controller = new Controller()
                 .CheckForTrain(trains, goldenArrow.ID)
                 .FollowTimeTable(goldenArrow)
+                .StopAtStations(stations, goldenArrow)
                 .LoadTrainWithPassengers(passengers)
                 .SetCrossing(Status.Open)
                 .StartThread(goldenArrow);

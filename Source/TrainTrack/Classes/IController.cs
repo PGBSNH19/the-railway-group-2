@@ -10,6 +10,7 @@ namespace TrainTrack.Classes
         IController StartTrain(Train train);
         IController StartThread(Train train);
         IController Start2(Train train);
+        IController StopAtStations(List<Station> stations, Train train);
         IController LoadTrainWithPassengers(List<Passenger> passengers);
         IController SetCrossing(Enum Status);
     }
