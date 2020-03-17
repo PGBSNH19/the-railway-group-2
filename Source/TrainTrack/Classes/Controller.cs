@@ -9,7 +9,6 @@ namespace TrainTrack.Classes
         public int TrainID { get; set; }
         public int StationID { get; set; }
         public int TrainPosition { get; set; } //Crossing ; Open or close?
-
         public TimeSpan Departure { get; set; }
         public TimeSpan Arrival { get; set; }
 
@@ -30,7 +29,7 @@ namespace TrainTrack.Classes
                     DateTime departureTime = DateTime.Parse(train2TT[i].DepartureTime);
                     DateTime arrivalTime = DateTime.Parse(train2TT[i + 1].ArrivalTime);
 
-                    Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
+                    Console.WriteLine($"Departure Time: { departureTime:HH:mm}");
                     Console.WriteLine($"Train: { train.Name }");
                     Console.WriteLine();
 
@@ -38,18 +37,18 @@ namespace TrainTrack.Classes
                     {
                         Console.WriteLine("Train is halting for 2 minutes...before continuing the journey!");
                         Console.WriteLine();
-                        Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
+                        Console.WriteLine($"Departure Time: { departureTime:HH:mm}");
                         Thread.Sleep(1000);
                     }
 
                     while (departureTime < arrivalTime)
                     {
-                        Console.WriteLine($"choo choo { departureTime.ToString("HH:mm") }");
+                        Console.WriteLine($"choo choo { departureTime:HH:mm}");
                         departureTime += addOneMinute;
                         arrivalTime.AddMinutes(addOneMinute.Minutes);
                         Thread.Sleep(200);
                     }
-                    Console.WriteLine($"Arrival Time: { arrivalTime.ToString("HH:mm") }");
+                    Console.WriteLine($"Arrival Time: { arrivalTime:HH:mm}");
                     Console.WriteLine();
                 }
 
@@ -57,7 +56,7 @@ namespace TrainTrack.Classes
            
         }
 
-        public IController Start1(Train train)
+        public IController StartThread(Train train)
         {
             _thread1 = new Thread(() => StartTrain(train));
             _thread1.Start();
@@ -73,20 +72,18 @@ namespace TrainTrack.Classes
             return this;
         }
 
-        
         public IController CheckForTrain(List<Train> trains, int check)
         {
             var train = trains.Where(t => t.ID == check).ToList().First();
+
             return this;
         }
-
 
         public IController FollowTimeTable(Train train)
         {
             myTimeTable = times.Where(t => t.TrainID == train.ID).ToList();
+
             return this;
         }
-
-
     }
 }

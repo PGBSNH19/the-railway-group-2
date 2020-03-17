@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace TrainTrack.Classes
 {
-    public class Passenger :IGenericList<Passenger>
+    public class Passenger : IGenericList<Passenger>
     {
-
         public int ID { get; set; }
         public string Name { get; set; }
         public string FilePath { get; set; } = "@data/passengers.txt";
@@ -35,6 +33,5 @@ namespace TrainTrack.Classes
 
             return Passengers;
         }
-
     }
 }

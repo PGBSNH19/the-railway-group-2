@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace TrainTrack.Classes
 {
-
-
     public class Train : IGenericList<Train>
     {
-        
-
         public int ID { get; set; }
         public string Name { get; set; }
         public int MaxSpeed { get; set; }
@@ -19,20 +14,18 @@ namespace TrainTrack.Classes
         public List<Train> Trains { get; set; } = new List<Train>();
 
 
-        
-        
-
         public static Train CreateFromLine(string line)
         {
             string[] split = line.Split(',');
-            Train t = new Train
+            Train train = new Train
             {
                 ID = int.Parse(split[0]),
                 Name = split[1],
                 MaxSpeed = int.Parse(split[2]),
                 Operated = bool.Parse(split[3])
             };
-            return t;
+
+            return train;
         }
 
         public List<Train> ReadFile()

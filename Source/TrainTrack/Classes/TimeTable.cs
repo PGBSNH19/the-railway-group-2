@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace TrainTrack.Classes
@@ -23,7 +22,6 @@ namespace TrainTrack.Classes
                 StationID = int.Parse(split[1]),
                 DepartureTime = (split[2] == "null" ? "00:00" : split[2]),
                 ArrivalTime = (split[3] == "null" ? "00:00" : split[3])
-
             };
 
             return timeTable;

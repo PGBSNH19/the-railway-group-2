@@ -12,6 +12,5 @@ namespace TrainTrack.Classes
         public int ID { get; set; }
         public Enum Status { get; set; }
         public int Placement { get; set; }
-        
     }
 }
