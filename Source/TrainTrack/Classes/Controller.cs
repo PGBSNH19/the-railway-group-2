@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+
 namespace TrainTrack.Classes
 {
     public class Controller : IController
     {
         public int TrainID { get; set; }
         public int StationID { get; set; }
-        public int TrainPosition { get; set; } //Crossing ; Open or close?
+        public int TrainPosition { get; set; }
         public DateTime Departure { get; set; }
         public DateTime Arrival { get; set; }
 
-        public List<TimeTable> myTimeTable;
+        public List<TimeTable> specificTrainTimeTable;
         public Thread _thread1;
         public Thread _thread2;
 
@@ -23,8 +24,6 @@ namespace TrainTrack.Classes
 
         public IController StartTrain(Train train)
         {
-            var train2TT = myTimeTable;
-
             var stations = stopStationsT3;
 
             if (train.ID == 2)
@@ -34,63 +33,58 @@ namespace TrainTrack.Classes
 
             var endStation = stations.Last();
 
-            for (int i = 0; i < train2TT.Count - 1; i++)
+            for (int i = 0; i < specificTrainTimeTable.Count - 1; i++)
             {
                 TimeSpan addOneMinute = TimeSpan.FromMinutes(1);
-                Departure = DateTime.Parse(train2TT[i].DepartureTime);
-                Arrival = DateTime.Parse(train2TT[i + 1].ArrivalTime);
+                Departure = DateTime.Parse(specificTrainTimeTable[i].DepartureTime);
+                Arrival = DateTime.Parse(specificTrainTimeTable[i + 1].ArrivalTime);
 
                 for (int j = 0; j < stations.Count; j++)
                 {
-
-                    if (stations[j].ID == train2TT[i].StationID)
+                    if (stations[j].ID == specificTrainTimeTable[i].StationID)
                     {
-
-                        if (train2TT[i].ArrivalTime == "00:00")
+                        if (specificTrainTimeTable[i].ArrivalTime == "00:00")
                         {
-                            Console.WriteLine("Train " + train.Name + " is leaving from " + stations[i].Name + " at " + train2TT[i].DepartureTime);
+                            Console.WriteLine($"Train { train.Name } is leaving from { stations[i].Name } at { specificTrainTimeTable[i].DepartureTime }");
                             Console.WriteLine();
                         }
 
-                        else if (train2TT[i].ArrivalTime != "00:00")
+                        else if (specificTrainTimeTable[i].ArrivalTime != "00:00")
                         {
                             Console.WriteLine(train.Name);
-                            Console.WriteLine("Arrived at " + stations[j].Name + "at " + train2TT[i].ArrivalTime);
-                            Console.WriteLine("Next departure: " + train2TT[i].DepartureTime);
+                            Console.WriteLine($"Arrived at { stations[j].Name } at { specificTrainTimeTable[i].ArrivalTime }");
+                            Console.WriteLine($"Next departure: { specificTrainTimeTable[i].DepartureTime }");
                             Console.WriteLine();
                         }
 
                         else if (stations[j].EndStation == true)
                         {
-                            Console.WriteLine(stations[j].Name + " is the final destination for " + train.Name);
-                            Console.WriteLine("Arrived at " + train2TT[i].ArrivalTime);
+                            Console.WriteLine($"{ stations[j].Name } is the final destination for { train.Name }");
+                            Console.WriteLine($"Arrived at { specificTrainTimeTable[i].ArrivalTime }");
                             Console.WriteLine();
                         }
 
                         if (i == 1)
                         {
-                            
                             Thread.Sleep(2000);
                         }
 
                         while (Departure < Arrival)
                         {
-                            Console.WriteLine($"{train.Name} says: Choo choo { Departure.ToString("HH:mm") }");
+                            Console.WriteLine($"{train.Name} says: Choo choo { Departure:HH:mm}");
                             Departure += addOneMinute;
                             Arrival.AddMinutes(addOneMinute.Minutes);
                             Thread.Sleep(200);
                         }
-
                     }
-
                 }
 
-                Console.WriteLine($"{train.Name} Arrival Time: { Arrival.ToString("HH:mm") }");
+                Console.WriteLine($"{train.Name} Arrival Time: { Arrival:HH:mm}");
                 Console.WriteLine();
             }
 
-            Console.WriteLine("Arrived at " + endStation.Name + " which is");
-            Console.WriteLine(train.Name + "'s final destination.");
+            Console.WriteLine($"Arrived at { endStation.Name } which is");
+            Console.WriteLine($"{ train.Name } 's final destination.");
             Console.WriteLine();
             
             return this;
@@ -121,7 +115,7 @@ namespace TrainTrack.Classes
 
         public IController FollowTimeTable(Train train)
         {
-            myTimeTable = times.Where(t => t.TrainID == train.ID).ToList();
+            specificTrainTimeTable = times.Where(t => t.TrainID == train.ID).ToList();
 
             return this;
         }
@@ -130,13 +124,13 @@ namespace TrainTrack.Classes
         {
             if (train.ID == 3)
             {
-                stopStationsT3 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID))
+                stopStationsT3 = stations.Where(stations => specificTrainTimeTable.Any(t => t.StationID == stations.ID))
                                          .OrderByDescending(s => s.ID)
                                          .ToList();
             }
             else
             {
-                stopStationsT2 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID))
+                stopStationsT2 = stations.Where(stations => specificTrainTimeTable.Any(t => t.StationID == stations.ID))
                                          .ToList();
             }
             return this;
