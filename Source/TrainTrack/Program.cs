@@ -16,7 +16,6 @@ namespace TrainTrack
             var lapplandståget = trains.Find(x => x.Name == "Lapplandståget");
 
             var trainRoute1 = new Controller()
-                //.CheckForTrain(trains, goldenArrow.ID)
                 .FollowTimeTable(goldenArrow)
                 .StopAtStations(stations, goldenArrow)
                 .LoadTrainWithPassengers(passengers)
@@ -24,7 +23,6 @@ namespace TrainTrack
                 .StartThread1(goldenArrow);
 
             var trainRoute2 = new Controller()
-                //.CheckForTrain(trains, lapplandståget.ID)
                 .FollowTimeTable(lapplandståget)
                 .StopAtStations(stations, lapplandståget)
                 .LoadTrainWithPassengers(passengers)

@@ -105,13 +105,6 @@ namespace TrainTrack.Classes
             return this;
         }
 
-        //public IController CheckForTrain(List<Train> trains, int check)
-        //{
-        //    var train = trains.Where(t => t.ID == check).ToList().First();
-
-        //    return this;
-        //}
-
         public IController FollowTimeTable(Train train)
         {
             specificTrainTimeTable = times.Where(t => t.TrainID == train.ID).ToList();
