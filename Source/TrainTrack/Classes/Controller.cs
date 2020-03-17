@@ -9,27 +9,26 @@ namespace TrainTrack.Classes
         public int TrainID { get; set; }
         public int StationID { get; set; }
         public int TrainPosition { get; set; } //Crossing ; Open or close?
-        public TimeSpan Departure { get; set; }
-        public TimeSpan Arrival { get; set; }
+        public DateTime Departure { get; set; }
+        public DateTime Arrival { get; set; }
 
         public List<TimeTable> myTimeTable;
         public Thread _thread1;
         public Thread _thread2;
-
-        List<TimeTable> times = new TimeTable().ReadFile();
+        readonly List<TimeTable> times = new TimeTable().ReadFile();
 
         public IController StartTrain(Train train)
         {
             var train2TT = myTimeTable;
 
-
+            
             for (int i = 0; i < train2TT.Count - 1; i++)
                 {
                     TimeSpan addOneMinute = TimeSpan.FromMinutes(1);
-                    DateTime departureTime = DateTime.Parse(train2TT[i].DepartureTime);
-                    DateTime arrivalTime = DateTime.Parse(train2TT[i + 1].ArrivalTime);
+                    Departure = DateTime.Parse(train2TT[i].DepartureTime);
+                    Arrival = DateTime.Parse(train2TT[i + 1].ArrivalTime);
 
-                    Console.WriteLine($"Departure Time: { departureTime:HH:mm}");
+                    Console.WriteLine($"Departure Time: { Departure:HH:mm}");
                     Console.WriteLine($"Train: { train.Name }");
                     Console.WriteLine();
 
@@ -37,18 +36,18 @@ namespace TrainTrack.Classes
                     {
                         Console.WriteLine("Train is halting for 2 minutes...before continuing the journey!");
                         Console.WriteLine();
-                        Console.WriteLine($"Departure Time: { departureTime:HH:mm}");
+                        Console.WriteLine($"Departure Time: { Departure:HH:mm}");
                         Thread.Sleep(1000);
                     }
 
-                    while (departureTime < arrivalTime)
+                    while (Departure < Arrival)
                     {
-                        Console.WriteLine($"{train.Name} says: choo choo { departureTime:HH:mm}");
-                        departureTime += addOneMinute;
-                        arrivalTime.AddMinutes(addOneMinute.Minutes);
+                        Console.WriteLine($"{train.Name} says: choo choo { Departure:HH:mm}");
+                        Departure += addOneMinute;
+                        Arrival.AddMinutes(addOneMinute.Minutes);
                         Thread.Sleep(200);
                     }
-                    Console.WriteLine($"Arrival Time: { arrivalTime:HH:mm}");
+                    Console.WriteLine($"Arrival Time: { Arrival:HH:mm}");
                     Console.WriteLine();
                 }
 
@@ -113,6 +112,5 @@ namespace TrainTrack.Classes
             Console.WriteLine($"\nCrossing: {crossing.ID} is now set to {crossing.Status} and it lies {crossing.Placement}km ahead \n");
             return this;
         }
-
     }
 }
