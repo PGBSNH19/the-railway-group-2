@@ -7,7 +7,7 @@ namespace TrainTrack.Tests
     public class LoadDataFromFile
     {
         [Fact]
-        public void Test1()
+        public void ReadTrainDataAndParseTest()
         {
             List<Train> trains = new Train().ReadFile();
 
@@ -15,6 +15,17 @@ namespace TrainTrack.Tests
             Assert.Equal("Flying Scotsman", trains[0].Name);
             Assert.Equal(100, trains[0].MaxSpeed);
             Assert.False(trains[0].Operated);
+        }
+
+        [Fact]
+        public void ReadTrainTrackDataAndParseTest()
+        {
+            List<TimeTable> timeTables = new TimeTable().ReadFile();
+
+            Assert.Equal(2, timeTables[0].TrainID);
+            Assert.Equal(1, timeTables[0].StationID);
+            Assert.Equal("10:20", timeTables[0].DepartureTime);
+            Assert.Equal("00:00", timeTables[0].ArrivalTime);
         }
     }
 }
