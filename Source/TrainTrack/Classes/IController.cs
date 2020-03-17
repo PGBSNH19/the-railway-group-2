@@ -13,7 +13,7 @@ namespace TrainTrack.Classes
 
         IController StartTrain(Train train);
 
-        IController Start1(Train train);
+        IController StartThread(Train train);
 
         IController Start2(Train train);
 

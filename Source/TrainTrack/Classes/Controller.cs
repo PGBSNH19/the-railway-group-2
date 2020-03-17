@@ -57,7 +57,7 @@ namespace TrainTrack.Classes
            
         }
 
-        public IController Start1(Train train)
+        public IController StartThread(Train train)
         {
             _thread1 = new Thread(() => StartTrain(train));
             _thread1.Start();
