@@ -15,10 +15,13 @@ namespace TrainTrack.Classes
 
         public List<TimeTable> myTimeTable;
 
-        public List<Station> stopStations;
+        public List<Station> stopStationsT3;
+        public List<Station> stopStationsT2;
 
         public Thread _thread1;
         public Thread _thread2;
+
+        public List<List<Station>> listOfLists;
 
         List<TimeTable> times = new TimeTable().ReadFile();
        // List<Station> stations = new Station().ReadFile();
@@ -26,7 +29,19 @@ namespace TrainTrack.Classes
         public IController StartTrain(Train train)
         {
             var train2TT = myTimeTable;
-            var stations = stopStations;
+
+            var stations = stopStationsT3;
+
+            if(train.ID == 2)
+            {
+                stations = stopStationsT2;
+            }
+             
+                      
+
+            
+          
+            
 
             
 
@@ -36,26 +51,28 @@ namespace TrainTrack.Classes
                     DateTime departureTime = DateTime.Parse(train2TT[i].DepartureTime);
                     DateTime arrivalTime = DateTime.Parse(train2TT[i + 1].ArrivalTime);
 
-                    //Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
-                    //Console.WriteLine($"Train: { train.Name }");
-                    //Console.WriteLine();
+                //Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
+                //Console.WriteLine($"Train: { train.Name }");
+                //Console.WriteLine();
 
 
 
-                for (int j = 0; j < stations.Count; j++)
-                {
+
+                    for (int j = 0; j < stations.Count; j++)
+                    {
                    
                     if(stations[j].ID == train2TT[i].StationID)
                     {
                        
                         if(train2TT[i].ArrivalTime == "00:00")
                         {
-                            Console.WriteLine("Train is leaving from " + stations[i].Name + " at " + train2TT[i].DepartureTime);
+                            Console.WriteLine("Train "+ train.Name +  " is leaving from " + stations[i].Name + " at " + train2TT[i].DepartureTime);
                             Console.WriteLine();
                         }
 
                         else if (train2TT[i].ArrivalTime != "00:00")
                         {
+                            Console.WriteLine(train.Name);
                             Console.WriteLine("Arrived at " + stations[j].Name + "at " + train2TT[i].ArrivalTime);
                             Console.WriteLine("Next departure: " + train2TT[i].DepartureTime);
                             Console.WriteLine();
@@ -132,10 +149,25 @@ namespace TrainTrack.Classes
             return this;
         }
 
-        public IController StopAtStations(List<Station> stations)
+        public IController StopAtStations(List<Station> stations, Train train)
         {          
-                stopStations = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).ToList();
-                 
+           
+            if(train.ID == 3)
+            {
+                stopStationsT3 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).OrderByDescending(s => s.ID).ToList();
+            
+            }
+            else
+            {
+                stopStationsT2 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).ToList();
+              
+            }
+
+           
+            
+
+
+
             return this;
         }
 
