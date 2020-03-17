@@ -7,7 +7,7 @@ namespace TrainTrack.Classes
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string FilePath { get; set; } = "@data/passengers.txt";
+        public string FilePath { get; set; } = @"data/passengers.txt";
         public List<Passenger> Passengers { get; set; } = new List<Passenger>();
 
         public static Passenger CreateFromLine(string line)
