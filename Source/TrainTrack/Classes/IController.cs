@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TrainTrack.Classes
 {
@@ -9,5 +10,7 @@ namespace TrainTrack.Classes
         IController StartTrain(Train train);
         IController StartThread(Train train);
         IController Start2(Train train);
+        IController LoadTrainWithPassengers(List<Passenger> passengers);
+        IController SetCrossing(Enum Status);
     }
 }

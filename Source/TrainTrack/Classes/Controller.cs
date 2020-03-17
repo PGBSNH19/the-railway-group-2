@@ -43,7 +43,7 @@ namespace TrainTrack.Classes
 
                     while (departureTime < arrivalTime)
                     {
-                        Console.WriteLine($"choo choo { departureTime:HH:mm}");
+                        Console.WriteLine($"{train.Name} says: choo choo { departureTime:HH:mm}");
                         departureTime += addOneMinute;
                         arrivalTime.AddMinutes(addOneMinute.Minutes);
                         Thread.Sleep(200);
@@ -85,5 +85,34 @@ namespace TrainTrack.Classes
 
             return this;
         }
+
+        public IController LoadTrainWithPassengers(List<Passenger> passengers)
+        {
+            var travelers = passengers.Where(x => x.ID <= 10);
+
+            foreach (var traveler in travelers)
+            {
+                Console.WriteLine($"{traveler.Name} has stepped onboard");
+                Thread.Sleep(500);
+            }
+
+            Console.WriteLine("\n\n");
+            return this;
+        }
+
+        public IController SetCrossing(Enum Status)
+        {
+
+            var crossing = new Crossing()
+            {
+                ID = 1,
+                Status = Status,
+                Placement = 20
+            };
+
+            Console.WriteLine($"\nCrossing: {crossing.ID} is now set to {crossing.Status} and it lies {crossing.Placement}km ahead \n");
+            return this;
+        }
+
     }
 }
