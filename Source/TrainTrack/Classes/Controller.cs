@@ -43,7 +43,11 @@ namespace TrainTrack.Classes
           
             
 
+<<<<<<< Updated upstream
             
+=======
+            var endStation = stations.Last();
+>>>>>>> Stashed changes
 
             for (int i = 0; i < train2TT.Count - 1; i++)
                 {
@@ -51,6 +55,7 @@ namespace TrainTrack.Classes
                     DateTime departureTime = DateTime.Parse(train2TT[i].DepartureTime);
                     DateTime arrivalTime = DateTime.Parse(train2TT[i + 1].ArrivalTime);
 
+<<<<<<< Updated upstream
                 //Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
                 //Console.WriteLine($"Train: { train.Name }");
                 //Console.WriteLine();
@@ -59,6 +64,13 @@ namespace TrainTrack.Classes
 
 
                     for (int j = 0; j < stations.Count; j++)
+=======
+              
+                for (int j = 0; j < stations.Count; j++)
+                {
+
+                    if (stations[j].ID == train2TT[i].StationID)
+>>>>>>> Stashed changes
                     {
                    
                     if(stations[j].ID == train2TT[i].StationID)
@@ -76,20 +88,10 @@ namespace TrainTrack.Classes
                             Console.WriteLine("Arrived at " + stations[j].Name + "at " + train2TT[i].ArrivalTime);
                             Console.WriteLine("Next departure: " + train2TT[i].DepartureTime);
                             Console.WriteLine();
-                        }
-
-                        else if (stations[j].EndStation == true)
-                        {
-                            Console.WriteLine(stations[j].Name + " is the final destination for " + train.Name);
-                            Console.WriteLine("Arrived at " + train2TT[i].ArrivalTime);
-                            Console.WriteLine();
-                        }
+                        }                       
 
                         if (i == 1)
-                        {
-                            //Console.WriteLine("Train is halting for 2 minutes...before continuing the journey!");
-                            //Console.WriteLine();
-                            //Console.WriteLine($"Departure Time: { departureTime.ToString("HH:mm") }");
+                        {                          
                             Thread.Sleep(2000);
                         }
 
@@ -99,9 +101,11 @@ namespace TrainTrack.Classes
                             departureTime += addOneMinute;
                             arrivalTime.AddMinutes(addOneMinute.Minutes);
                             Thread.Sleep(200);
-                        }
+                                                                                
+                        }                       
 
                     }
+<<<<<<< Updated upstream
 
 
 
@@ -113,7 +117,19 @@ namespace TrainTrack.Classes
 
                     //Console.WriteLine($"Arrival Time: { arrivalTime.ToString("HH:mm") }");
                     Console.WriteLine();
+=======
+                    
+                }
+               
+                Console.WriteLine($"Arrival Time: { arrivalTime.ToString("HH:mm") }");
+                Console.WriteLine();
+
+>>>>>>> Stashed changes
             }
+
+            Console.WriteLine("Arrived at " + endStation.Name + " which is" );
+            Console.WriteLine(train.Name + "'s final destination.");
+            Console.WriteLine();
 
             return this;
            
@@ -157,17 +173,35 @@ namespace TrainTrack.Classes
                 stopStationsT3 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).OrderByDescending(s => s.ID).ToList();
             
             }
+
             else
             {
                 stopStationsT2 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).ToList();
               
             }
 
+<<<<<<< Updated upstream
            
             
 
 
 
+=======
+            return this;
+        }
+
+        public IController LoadTrainWithPassengers(List<Passenger> passengers)
+        {
+            var travelers = passengers.Where(x => x.ID <= 10);
+
+            foreach (var traveler in travelers)
+            {
+                Console.WriteLine($"{traveler.Name} has stepped onboard");
+                Thread.Sleep(500);
+            }
+
+            Console.WriteLine("\n\n");
+>>>>>>> Stashed changes
             return this;
         }
 
