@@ -32,19 +32,15 @@ namespace TrainTrack.Classes
                 stations = stopStationsT2;
             }
 
+            var endStation = stations.Last();
+
             for (int i = 0; i < train2TT.Count - 1; i++)
             {
                 TimeSpan addOneMinute = TimeSpan.FromMinutes(1);
                 Departure = DateTime.Parse(train2TT[i].DepartureTime);
                 Arrival = DateTime.Parse(train2TT[i + 1].ArrivalTime);
 
-                //Console.WriteLine($"Departure Time: { Departure.ToString("HH:mm") }");
-                //Console.WriteLine($"Train: { train.Name }");
-                //Console.WriteLine();
-
-
-
-
+         
                 for (int j = 0; j < stations.Count; j++)
                 {
 
@@ -74,9 +70,7 @@ namespace TrainTrack.Classes
 
                         if (i == 1)
                         {
-                            //Console.WriteLine("Train is halting for 2 minutes...before continuing the journey!");
-                            //Console.WriteLine();
-                            //Console.WriteLine($"Departure Time: { Departure.ToString("HH:mm") }");
+                            
                             Thread.Sleep(2000);
                         }
 
@@ -96,6 +90,9 @@ namespace TrainTrack.Classes
                 Console.WriteLine();
             }
 
+            Console.WriteLine("Arrived at " + endStation.Name + " which is");
+            Console.WriteLine(train.Name + "'s final destination.");
+            Console.WriteLine();
             return this;
 
         }
