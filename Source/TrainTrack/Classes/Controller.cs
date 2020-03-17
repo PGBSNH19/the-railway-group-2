@@ -40,7 +40,6 @@ namespace TrainTrack.Classes
                 Departure = DateTime.Parse(train2TT[i].DepartureTime);
                 Arrival = DateTime.Parse(train2TT[i + 1].ArrivalTime);
 
-         
                 for (int j = 0; j < stations.Count; j++)
                 {
 
@@ -93,8 +92,8 @@ namespace TrainTrack.Classes
             Console.WriteLine("Arrived at " + endStation.Name + " which is");
             Console.WriteLine(train.Name + "'s final destination.");
             Console.WriteLine();
+            
             return this;
-
         }
 
         public IController StartThread1(Train train)
@@ -129,16 +128,16 @@ namespace TrainTrack.Classes
 
         public IController StopAtStations(List<Station> stations, Train train)
         {
-
             if (train.ID == 3)
             {
-                stopStationsT3 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).OrderByDescending(s => s.ID).ToList();
-
+                stopStationsT3 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID))
+                                         .OrderByDescending(s => s.ID)
+                                         .ToList();
             }
             else
             {
-                stopStationsT2 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).ToList();
-
+                stopStationsT2 = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID))
+                                         .ToList();
             }
             return this;
         }
@@ -152,22 +151,21 @@ namespace TrainTrack.Classes
                 Console.WriteLine($"{traveler.Name} has stepped onboard");
                 Thread.Sleep(500);
             }
-
             Console.WriteLine("\n\n");
+
             return this;
         }
 
         public IController SetCrossing(Enum Status)
         {
-
             var crossing = new Crossing()
             {
                 ID = 1,
                 Status = Status,
                 Placement = 20
             };
-
             Console.WriteLine($"\nCrossing: {crossing.ID} is now set to {crossing.Status} and it lies {crossing.Placement}km ahead \n");
+            
             return this;
         }
     }

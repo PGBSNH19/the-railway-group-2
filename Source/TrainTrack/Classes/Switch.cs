@@ -9,7 +9,6 @@ namespace TrainTrack.Classes
 
     public class Switch
     {
-
         public int ID { get; set; }
         public int Placement { get; set; }
         public Enum Direction { get; set; }
