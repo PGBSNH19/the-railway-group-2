@@ -9,8 +9,12 @@ namespace TrainTrack.Tests
         [Fact]
         public void Test1()
         {
-            Train train = new Train();
-            List<Train> trainsList = train.Trains;
+            List<Train> trains = new Train().ReadFile();
+
+            Assert.Equal(1, trains[0].ID);
+            Assert.Equal("Flying Scotsman", trains[0].Name);
+            Assert.Equal(100, trains[0].MaxSpeed);
+            Assert.False(trains[0].Operated);
         }
     }
 }
