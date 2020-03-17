@@ -11,6 +11,8 @@ namespace TrainTrack.Classes
 
         IController FollowTimeTable(Train train);
 
+        IController StopAtStations(List<Station> stations);
+
         IController StartTrain(Train train);
 
         IController Start1(Train train);

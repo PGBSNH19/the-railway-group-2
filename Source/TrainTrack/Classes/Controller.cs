@@ -14,15 +14,19 @@ namespace TrainTrack.Classes
         public TimeSpan Arrival { get; set; }
 
         public List<TimeTable> myTimeTable;
+
+        public List<Station> allStations;
+
         public Thread _thread1;
         public Thread _thread2;
 
         List<TimeTable> times = new TimeTable().ReadFile();
+       // List<Station> stations = new Station().ReadFile();
 
         public IController StartTrain(Train train)
         {
             var train2TT = myTimeTable;
-
+            var stations = allStations;
 
             for (int i = 0; i < train2TT.Count - 1; i++)
                 {
@@ -84,6 +88,13 @@ namespace TrainTrack.Classes
         public IController FollowTimeTable(Train train)
         {
             myTimeTable = times.Where(t => t.TrainID == train.ID).ToList();
+            return this;
+        }
+
+        public IController StopAtStations(List<Station> stations)
+        {          
+                allStations = stations.Where(stations => myTimeTable.Any(t => t.StationID == stations.ID)).ToList();
+                 
             return this;
         }
 
