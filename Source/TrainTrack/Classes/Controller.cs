@@ -13,14 +13,13 @@ namespace TrainTrack.Classes
         public DateTime Departure { get; set; }
         public DateTime Arrival { get; set; }
 
+        readonly List<TimeTable> times = new TimeTable().ReadFile();
         public List<TimeTable> specificTrainTimeTable;
-        public Thread _thread1;
-        public Thread _thread2;
-
         public List<Station> stopStationsT3;
         public List<Station> stopStationsT2;
 
-        List<TimeTable> times = new TimeTable().ReadFile();
+        public Thread _thread1;
+        public Thread _thread2;
 
         public IController StartTrain(Train train)
         {
@@ -106,12 +105,12 @@ namespace TrainTrack.Classes
             return this;
         }
 
-        public IController CheckForTrain(List<Train> trains, int check)
-        {
-            var train = trains.Where(t => t.ID == check).ToList().First();
+        //public IController CheckForTrain(List<Train> trains, int check)
+        //{
+        //    var train = trains.Where(t => t.ID == check).ToList().First();
 
-            return this;
-        }
+        //    return this;
+        //}
 
         public IController FollowTimeTable(Train train)
         {
