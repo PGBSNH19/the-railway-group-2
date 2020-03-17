@@ -27,5 +27,24 @@ namespace TrainTrack.Tests
             Assert.Equal("10:20", timeTables[0].DepartureTime);
             Assert.Equal("00:00", timeTables[0].ArrivalTime);
         }
+
+        [Fact]
+        public void ReadPassengerDataAndParseTest()
+        {
+            List<Passenger> passengers = new Passenger().ReadFile();
+
+            Assert.Equal(1, passengers[0].ID);
+            Assert.Equal("Misty Walton", passengers[0].Name);
+        }
+
+        [Fact]
+        public void ReadStationDataAndParseTest()
+        {
+            List<Station> stations = new Station().ReadFile();
+
+            Assert.Equal(1, stations[0].ID);
+            Assert.Equal("Stonecro", stations[0].Name);
+            Assert.True(stations[0].EndStation);
+        }
     }
 }
