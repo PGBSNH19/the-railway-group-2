@@ -20,8 +20,8 @@ namespace TrainTrack.Classes
             {
                 TrainID = int.Parse(split[0]),
                 StationID = int.Parse(split[1]),
-                DepartureTime = (split[2] == "null" ? "00:00" : split[2]),
-                ArrivalTime = (split[3] == "null" ? "00:00" : split[3])
+                DepartureTime = (split[2] == "null" ? "00:00" : split[2]), //
+                ArrivalTime = (split[3] == "null" ? "00:00" : split[3]) //
             };
 
             return timeTable;

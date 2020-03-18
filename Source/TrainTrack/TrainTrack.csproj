@@ -7,10 +7,6 @@
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Remove="Classes\IReader.cs" />
     <Compile Remove="Classes\ICompleteTrack.cs" />

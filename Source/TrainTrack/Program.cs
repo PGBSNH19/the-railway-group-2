@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TrainTrack.Classes;
+using TrainTrack.Logging;
 
 namespace TrainTrack
 {
@@ -11,7 +12,6 @@ namespace TrainTrack
             var stations = new Station().ReadFile();
             var trains = new Train().ReadFile();
 
-
             var goldenArrow = trains.Find(x => x.Name == "Golden Arrow");
             var lapplandståget = trains.Find(x => x.Name == "Lapplandståget");
 
@@ -21,6 +21,8 @@ namespace TrainTrack
                 .LoadTrainWithPassengers(passengers)
                 .SetCrossing(Status.Open)
                 .StartThread1(goldenArrow);
+            LogHelper.Log(LogTarget.File, trainRoute1);
+
 
             var trainRoute2 = new Controller()
                 .FollowTimeTable(lapplandståget)
