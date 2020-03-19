@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TrainTrack.Classes;
+﻿using TrainTrack.Classes;
 using TrainTrack.Logging;
 
 namespace TrainTrack
@@ -21,6 +20,7 @@ namespace TrainTrack
                 .LoadTrainWithPassengers(passengers)
                 .SetCrossing(Status.Open)
                 .StartThread1(goldenArrow);
+
             LogHelper.Log(LogTarget.File, trainRoute1);
 
 
